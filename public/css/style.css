@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin-bottom: 0px;
+    /* Altura del footer */
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Ysabeau SC', sans-serif;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #333;
+    transition: left 0.3s;
+    padding-top: 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: #070707;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-align: left;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #555;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Altura del footer */
+    background-color: #ffffff00;
+    color: #070707;
+}
+
+/* Estilos específicos para dispositivos móviles (ancho de pantalla menor a 768px) */
+@media (max-width: 768px) {
+    footer {
+        margin-top: 10px;
+        height: auto;
+        /* Hacer que la altura se ajuste automáticamente al contenido */
+        position: relative;
+        /* Volver al flujo normal del documento */
+    }
+}
+
+.color_barra{
+    background-color: rgb(19, 19, 117);
+    color: white;
+}
+/*-------------- COLORES DE LAS ALERTAS -----------*/
+.custom-success {
+    background-color: #73d389;
+    color: #000000;
+    -webkit-text-stroke: .5px rgb(21, 114, 20); /* Para navegadores basados en WebKit (por ejemplo, Chrome, Safari) */
+}
+
+.custom-danger {
+    background-color: #d67781;
+    color: #000000;
+    -webkit-text-stroke: .5px rgb(122, 20, 20); /* Para navegadores basados en WebKit (por ejemplo, Chrome, Safari) */
+}
+.custom-info{
+    background-color: #d9e06e;
+    color: #000000;
+    -webkit-text-stroke: .5px rgb(108, 122, 20); /* Para navegadores basados en WebKit (por ejemplo, Chrome, Safari) */
+}
+/*------------ ICONO DE AYUDA -----------*/
+.help-icon {
+    padding: 4px 4px; /* Ajusta el padding según sea necesario */
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 10px; /* Espacio entre el ícono y el texto */
+    color: #000000; /* Color del ícono, puedes personalizarlo */
+}
+
+.help-message {
+    display: none;
+    font-size: 10px;
+    background-color: #ffffff;
+    border: 1px solid #7c7c7c4e;
+    padding: 13px;
+    position: absolute;
+    z-index: 1000; /* Para asegurarte de que esté por encima de otros elementos */
+    max-width: 300px; /* Ancho máximo del mensaje */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra para el mensaje */
+}

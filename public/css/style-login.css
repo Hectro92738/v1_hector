@@ -1,0 +1,40 @@
+
+.login-form {
+    margin-top: 0px;
+    background-color: rgb(255, 255, 255); /* Fondo transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(191, 191, 191, 0.53);
+}
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.center-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+#contenedor_login{
+    background-color: rgba(255, 255, 255, 0);
+}
+#contenedor_login {
+    background-color: #ffffff51; /* Cambia esto al color que desees para la sección */
+    padding: 20px; /* Agrega espacio alrededor del contenido de la sección */
+    box-shadow: 8px 5px 15px rgba(0, 0, 0, 0.151);
+    border-radius: 15px;
+}
+/* Estilo base para el enlace */
+a.button {
+    font-size: 13px;
+    padding: 10px 20px; /* Ajusta el padding según sea necesario */
+    text-decoration: none; /* Elimina el subrayado predeterminado */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0px 0px 8px rgba(4, 4, 4, 0.067);
+}
+a.button:hover {
+    background-color: #d8d8d852; 
+    
+}
