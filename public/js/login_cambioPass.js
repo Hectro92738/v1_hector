@@ -1,4 +1,21 @@
 $(document).ready(function () {
+       // Selecciona los elementos checkbox y los campos de contraseña
+       var $showPasswordsCheckbox = $('#show-passwords');
+       var $passwordInput = $('#modal-newPassword');
+       var $confirmPasswordInput = $('#modal-confirmPassword');
+   
+       // Agrega un evento change al checkbox
+       $showPasswordsCheckbox.change(function () {
+           // Si el checkbox está seleccionado, cambia el tipo de ambos campos de contraseña a "text"
+           if ($(this).is(':checked')) {
+               $passwordInput.attr('type', 'text');
+               $confirmPasswordInput.attr('type', 'text');
+           } else {
+               // Si el checkbox no está seleccionado, vuelve a cambiar el tipo a "password"
+               $passwordInput.attr('type', 'password');
+               $confirmPasswordInput.attr('type', 'password');
+           }
+       });
     //---------------------------------------------------------------------------
     $("#mensajeAlerta").hide();
     var correo = appData.email;

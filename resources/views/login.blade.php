@@ -86,6 +86,7 @@
                             </p>
                         </div>
                     </div>
+                    <input type="checkbox" id="show-password"> Mostrar contraseña
                     <div class="form-group py-4">
                         <button type="submit" class="btn btn-primary btn-block me-3">Iniciar Sesión</button>
                         <a class="button" href="{{ url('/email_recuperacion') }}">¿Olvidó su contraseña?</a>
@@ -98,38 +99,5 @@
                 @endif
             </div>
         </div>
-        <!--<div class="row justify-content-center align-items-center min-vh-100">
-            <div class="col-md-4">
-                <div class="login-form">
-                    <a class="navbar-brand py-3" href="#">
-                        <img class="center-image" width="200" class="img-thumbnail"
-                            src="{{ asset('images/LOGO_UTEQ2022_COMPLETO.png') }}" alt="">
-                    </a>
-                    <h2 class="text-center py-3">Iniciar Sesión</h2>
-                    <form id="form_login"> {{-- method="POST" action="{{ route('login') }} --}}
-                        @csrf
-                        <div class="input-group" id="group-modal-email">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                            <input type="text" id="modal-email" name="modal-email" class="form-control"
-                                placeholder="Email@uteq.edu.mx">
-                        </div>
-                        <div class="input-group mt-3" id="group-modal-password">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                            <input type="password" id="modal-password" name="modal-password" class="form-control"
-                                placeholder="Password">
-                        </div>
-                        <div class="form-group py-3">
-                            <button type="submit" class="btn btn-primary btn-block me-5">Iniciar Sesión</button>
-                            <a href="{{ url('/email_recuperacion') }}">¿Olvidó su contraseña?</a>
-                        </div>
-                    </form>
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>-->
+
 @endsection {{-- Fin del contenido del body  --}}

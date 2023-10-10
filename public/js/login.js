@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // Obtén los elementos de iconos y mensajes
+    // Obtén los elementos de iconos y mensajes de ayuda ??
     const helpIcon = document.getElementById("help-icon");
     const helpMessage = document.getElementById("help-message");
     const helpIconPass = document.getElementById("help-iconPass");
@@ -7,6 +7,21 @@ $(document).ready(function () {
     // Llama a la función para configurar los iconos y mensajes
     manejarAyuda(helpIcon, helpMessage);
     manejarAyuda(helpIconPass, helpMessagePass);
+    //-------------------------------------------------------------------------------
+    // Selecciona el elemento checkbox y el campo de contraseña
+    var $showPasswordCheckbox = $('#show-password');
+    var $passwordInput = $('#modal-password');
+    // Agrega un evento change al checkbox
+    $showPasswordCheckbox.change(function () {
+        // Si el checkbox está seleccionado, cambia el tipo del campo de contraseña a "text"
+        if ($(this).is(':checked')) {
+            $passwordInput.attr('type', 'text');
+        } else {
+            // Si el checkbox no está seleccionado, vuelve a cambiar el tipo a "password"
+            $passwordInput.attr('type', 'password');
+        }
+    });
+    //--------------------------------------------------------------------------------------------------
     var formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     $(document).on("submit", "#form_login", function (e) {
         e.preventDefault();

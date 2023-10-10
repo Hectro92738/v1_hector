@@ -37,7 +37,7 @@
                         <input type="password" id="modal-confirmPassword" name="modal-confirmPassword" class="form-control"
                             placeholder="confirm Password">
                     </div>
-                    <div id="emailHelp" class="form-text">Repite tu password</div>
+                    <input class="mt-2" type="checkbox" class="form-check-input" id="show-passwords"> Mostrar contraseñas
                     <div class="form-group py-5">
                         <button type="submit" class="btn btn-primary btn-block me-4">Enviar</button>
                     </div>
