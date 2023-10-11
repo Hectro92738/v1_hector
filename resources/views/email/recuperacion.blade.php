@@ -7,7 +7,7 @@
     <script src="{{ asset('js/email/recuperacion.js') }}"></script>
 @endsection
 @section('content') {{-- Dentro del body hemos llamado "content" la sección donde va a variar el contenido del body --}}
-    @include('all_navbar') {{-- Incluye el archivo de navegación --}}
+    @include('navbar') {{-- Incluye el archivo de navegación --}}
     <div class="container">
         <div class="row py-1">
             <!-- Sección de bienvenida y mensaje -->
@@ -81,42 +81,11 @@
                             </div>
                         </div>
                         <div class="form-group py-3">
-                            <button type="submit" class="btn btn-primary btn-block me-4">Enviar Token</button>
+                            <button type="submit" id="botonn" class="btn btn-block me-4">Enviar Token</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!-- <div class="row justify-content-center align-items-center min-vh-100">
-                                <div class="col-md-4">
-                                    <div class="login-form">
-                                        <button id="backButton" class="btn btn-secondary btn-block"><i
-                                                class="bi bi-arrow-left-short fa-2x"></i></button>
-                                        <a class="navbar-brand py-3" href="#">
-                                            <img class="center-image" width="200" class="img-thumbnail"
-                                                src="{{ asset('images/LOGO_UTEQ2022_COMPLETO.png') }}" alt="">
-                                        </a>
-                                        <h2 class="text-center">Recuperación de contraseña</h2>
-                                        <form id="form_token"> {{-- method="POST" action="{{ route('login') }} --}}
-                                            @csrf
-                                            <div id="emailHelp" class="form-text">"¡Bienvenido! Por favor ingresa tu correo electrónico
-                                                institucional en el campo proporcionado a
-                                                continuación. Te enviaremos un enlace de restablecimiento a tu correo electrónico
-                                                registrado.
-                                                Asegúrate de ingresar tu correo institucional para garantizar la seguridad de tu cuenta.
-                                                ¡Gracias!"</div>
-                                            <div class="input-group mt-4" id="group-modal-email">
-                                                <span class="input-group-text" id="basic-addon1">@</span>
-                                                <input type="text" id="modal-email" name="modal-email" class="form-control"
-                                                    placeholder="Email@uteq.edu.mx">
-                                            </div>
-                                            <div class="form-group py-3">
-                                                <button type="submit" class="btn btn-primary btn-block me-4">Enviar Token</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-    @endsection {{-- Fin del contenido del body  --}}
+    </div>
+@endsection {{-- Fin del contenido del body  --}}

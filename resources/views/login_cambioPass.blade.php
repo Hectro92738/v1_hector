@@ -2,10 +2,9 @@
 @section('title', 'XXHR-UTEQ') {{-- Uso de variables en cada documento en este caso en Titulo  --}}
 @section('Js')
     <script src="{{ asset('js/login_cambioPass.js') }}"></script>
-    <script src="{{ asset('js/all.js') }}"></script>
 @endsection
 @section('content') {{-- Dentro del body hemos llamado "content" la sección donde va a variar el contenido del body --}}
-    {{-- @include('navbarRoles') --}} {{-- Incluye el archivo de navegación --}}
+    @include('navbar') {{-- Incluye el archivo de navegación --}}
     <div class="container">
         <div class="row py-5">
             <!-- Sección de bienvenida y mensaje -->
@@ -37,9 +36,12 @@
                         <input type="password" id="modal-confirmPassword" name="modal-confirmPassword" class="form-control"
                             placeholder="confirm Password">
                     </div>
-                    <input class="mt-2" type="checkbox" class="form-check-input" id="show-passwords"> Mostrar contraseñas
+                    <div class="py-2" style="font-size: 13px;">
+                        <input class="mt-2" type="checkbox" class="form-check-input" id="show-passwords"> Mostrar
+                        contraseñas
+                    </div>
                     <div class="form-group py-5">
-                        <button type="submit" class="btn btn-primary btn-block me-4">Enviar</button>
+                        <button type="submit" id="botonn" class="btn btn-block me-4">Enviar</button>
                     </div>
                 </form>
             </div>

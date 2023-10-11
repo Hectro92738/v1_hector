@@ -16,7 +16,7 @@ $(function () {
             if (response.status == 200) {
                 //--------------------------
                 const employees = response.obj;
-                let tableHtml ='<div class="table-responsive">'+
+                let tableHtml = '<div class="table-responsive">' +
                     '<table class="table table-striped aling-middle">' +
                     '<thead>' +
                     '<tr>' +
@@ -93,8 +93,14 @@ $(function () {
             .done(function (response) {
                 if (response.status == 700) {
                     cerrarSesion();
+                } else if (response.status == 200) {
+                    alerta("success", response.msj);
+                    setTimeout(function () {
+                        setInterval(actualizar, 1000);
+                    }, 1000);
+                } else {
+                    alerta("danger", response.msj);
                 }
-                setInterval(actualizar, 1000);
             })
             .fail(error_ajax);
     });

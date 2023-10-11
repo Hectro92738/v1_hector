@@ -33,6 +33,7 @@
         var appData = {
             email: '{{ request('email') }}',
             token: '{{ request('token') }}',
+            num_Emp: '{{ request('numEmp') }}',
             changePassword: '{{ request('changePassword') }}',
         };
     </script>
@@ -44,14 +45,11 @@
     <script>
         var loginRoute = '{{ route('login') }}'; //valida el pass y usu
         var CrudRoute = '{{ url('/Crud') }}';
-        var indexRoute = '{{ url('/') }}'; //Cuando cierre sesión
-        var logoutRoute = '{{ route('logout') }}'; //Cuando cierre sesión
         var login_cambio_PaswordRoute = '{{ url('/login_cambio_Pasword') }}';
         var eupdatePasswordSecionRoute = '{{ route('eupdatePasswordSecion') }}' + '?token=' + appData.token;
         var getNameRoute = '{{ route('getName') }}' + '?token=' + appData.token;
         var verificaEmailExisteRoute = '{{ route('verificaEmailExiste') }}';
     </script>
-    @include('footer') {{-- Incluye el archivo de navegación --}}
+    {{-- @include('footer')  --}}   {{-- Incluye el archivo de navegación --}}
 </body>
-
 </html>

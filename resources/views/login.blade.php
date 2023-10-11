@@ -7,7 +7,7 @@
     <script src="{{ asset('js/login.js') }}"></script>
 @endsection
 @section('content') {{-- Dentro del body hemos llamado "content" la sección donde va a variar el contenido del body --}}
-    @include('all_navbar') {{-- Incluye el archivo de navegación --}}
+    @include('navbar') {{-- Incluye el archivo de navegación --}}
     <div class="container">
         <div class="row py-1">
             <!-- Sección de bienvenida y mensaje -->
@@ -86,9 +86,11 @@
                             </p>
                         </div>
                     </div>
-                    <input type="checkbox" id="show-password"> Mostrar contraseña
+                    <div class="py-2" style="font-size: 13px;">
+                        <input type="checkbox" id="show-password"> Mostrar contraseña
+                    </div>
                     <div class="form-group py-4">
-                        <button type="submit" class="btn btn-primary btn-block me-3">Iniciar Sesión</button>
+                        <button type="submit" id="botonn" class="btn btn-block me-3">Iniciar Sesión</button>
                         <a class="button" href="{{ url('/email_recuperacion') }}">¿Olvidó su contraseña?</a>
                     </div>
                 </form>
@@ -99,5 +101,5 @@
                 @endif
             </div>
         </div>
-
+    </div>
 @endsection {{-- Fin del contenido del body  --}}

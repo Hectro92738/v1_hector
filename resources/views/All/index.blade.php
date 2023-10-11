@@ -1,26 +1,21 @@
-@extends('layouts.header') {{-- Encabezado de todas las paguinas --}}
+@extends('layouts.header_All') {{-- Encabezado de todas las paguinas --}}
 @section('title', 'XXHR-UTEQ') {{-- Uso de variables en cada documento en este caso en Titulo  --}}
 @section('Js')
     <script src="{{ asset('js/index.js') }}"></script>
     <script src="{{ asset('js/all.js') }}"></script>
 @endsection
 @section('content') {{-- Dentro del body hemos llamado "content" la sección donde va a variar el contenido del body --}}
-    @include('navbarRoles') {{-- Incluye el archivo de navegación --}}
     <div class="container">
-        <div class="container py-2">
-            <div class="row my-2">
-                <div class="col-lg-16">
-                    <h3>CRUD AJAX</h3>
-                    <div class="card shadow">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Employee">
-                                <i class="bi bi-box-seam-fill me-2"></i>Add Employee
-                            </button>
-                        </div>
-                        <div class="card-body" id="show_all_employees">
-                            <h1 class="text-center text-secondary my-5">Loading..</h1>
-                        </div>
-                    </div>
+        <div class="col-lg-16">
+            <h3>CRUD AJAX</h3>
+            <div class="card shadow">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Employee">
+                        <i class="bi bi-box-seam-fill me-2"></i>Add Employee
+                    </button>
+                </div>
+                <div class="card-body" id="show_all_employees">
+                    <h1 class="text-center text-secondary my-5">Loading..</h1>
                 </div>
             </div>
         </div>
@@ -86,8 +81,7 @@
             </div>
         </div>
         {{-- MODAL-EDITAR --}}
-        <div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -96,36 +90,6 @@
                     </div>
                     <div class="modal-body" id="contenido_detalle">
 
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- MODAL- CAMBIO - PASSWORD --}}
-        <div class="modal fade" id="cambio_password" tabindex="-1" aria-labelledby="exampleModalLabel"zaria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cambio de Contraseña</h1>
-                    </div>
-                    <div class="modal-body">
-                        <form id="form_login"> {{-- method="POST" action="{{ route('login') }} --}}
-                            @csrf
-                            <div class="input-group mt-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
-                            </div>
-                            <div id="emailHelp" class="form-text">Password minimo de 8 caracteres</div>
-                            <div class="input-group mt-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                                <input type="password" id="password2" name="password2" class="form-control" placeholder="Password">
-                            </div>
-                            <div id="emailHelp" class="form-text">Repite tu password</div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="cambiarButton" class="btn btn-primary">
-                            Cambiar
-                        </button>
                     </div>
                 </div>
             </div>

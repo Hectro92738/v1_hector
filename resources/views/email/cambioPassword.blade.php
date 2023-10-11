@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,15 +38,17 @@
                             <input type="password" id="modal-newPassword" name="modal-newPassword" class="form-control"
                                 placeholder="new pasword">
                         </div>
-                        <div id="emailHelp" class="form-text">Password minimo de 8 caracteres</div>
-                        <div class="input-group mt-3"  id="group-modal-confirmPassword">
+                        <div class="input-group mt-3" id="group-modal-confirmPassword">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                            <input type="password" id="modal-confirmPassword" name="modal-confirmPassword" class="form-control"
-                                placeholder="confirm Password">
+                            <input type="password" id="modal-confirmPassword" name="modal-confirmPassword"
+                                class="form-control" placeholder="confirm Password">
                         </div>
-                        <div id="emailHelp" class="form-text">Repite tu password</div>
+                        <div class="py-2" style="font-size: 13px;">
+                            <input class="mt-2" type="checkbox" class="form-check-input" id="show-passwords"> Mostrar
+                            contraseñas
+                        </div>
                         <div class="form-group py-5">
-                            <button type="submit" class="btn btn-primary btn-block me-4">Cambiar Password</button>
+                            <button type="submit" id="botonn" class="btn btn-block me-4">Cambiar Password</button>
                         </div>
                     </form>
                 </div>
@@ -78,9 +81,11 @@
             </div>
         </div>
     </div>
-    <div id="mensaje" class="d-flex flex-column position-fixed" style="top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;"></div>  
+    <div id="mensaje" class="d-flex flex-column position-fixed"
+        style="top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;"></div>
     <script>
         var eupdatePasswordRoute = '{{ route('eupdatePassword') }}';
     </script>
 </body>
+
 </html>

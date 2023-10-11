@@ -2,6 +2,9 @@ $(document).ready(function () {
     $("#mensajeAlerta").hide();
     $("#for_password_new").show();
     $("#mensaje_experado").hide();
+    //-------------------------------------------------------------------------------
+    VisibilityPassword('show-passwords', ['modal-newPassword','modal-confirmPassword']);
+    //-------------------------------------------------------------------------------
     // Función para encriptar una cadena en SHA-256
     async function sha256(str) {
         const encoder = new TextEncoder();
@@ -69,7 +72,7 @@ $(document).ready(function () {
                 return false;
             } else
                 if (!formatoContrasena.test($("#modal-newPassword").val())) {
-                    error_formulario("modal-newPassword", "Formato incorrecto (minimo 8 caracteres y Mayusculas)");
+                    error_formulario("modal-newPassword", "Formato incorrecto (minimo 8 caracteres, Mayusculas y Minisculas)");
                     return false;
                 } else
                     if ($("#modal-newPassword").val() !== $("#modal-confirmPassword").val()) {

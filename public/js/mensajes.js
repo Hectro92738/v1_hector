@@ -1,3 +1,10 @@
+$(document).ready(function () {
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+});
 function error_formulario(campo, mensaje) {
 	$("#group-" + campo).append($("<div>", {
 		"class": "invalid-feedback",
@@ -112,3 +119,65 @@ function fechaActual() {
 	var fechaActual = dd + '-' + mm + '-' + yyyy;
 	return fechaActual;
 };
+function VisibilityPassword(checkboxId, passwordIds) {
+	var $showPasswordCheckbox = $('#' + checkboxId);
+
+	$showPasswordCheckbox.change(function () {
+		var isChecked = $(this).is(':checked');
+		passwordIds.forEach(function (passwordId) {
+			var $passwordInput = $('#' + passwordId);
+			$passwordInput.attr('type', isChecked ? 'text' : 'password');
+		});
+	});
+}
+function obtenerNombreEmpleado(correo) {
+	$.ajax({
+		url: getNameRoute,
+		dataType: 'json',
+		method: 'POST',
+		data: {
+			correo: correo,
+		},
+		success: function (response) {
+			if (response.status == 700) {
+				cerrarSesion();
+			}
+			var nombreUsuario = response.nombre;
+			var bienvenidaElement = document.querySelector('#nombre');
+			bienvenidaElement.innerHTML = nombreUsuario;
+		},
+		error: function () {
+			error_ajax();
+		},
+	});
+}
+function obtenerAvatar(numEmp, id, tamaño, css) {
+	$.ajax({
+		url: getAvatarRoute,
+		dataType: 'json',
+		method: 'POST',
+		data: {
+			numEmp: numEmp,
+		},
+		success: function (response) {
+			if (response.status == 700) {
+				cerrarSesion();
+			}
+			if (response.status == 200) {
+				$("#btn_delete_avatar").show();
+				var img = response.img;
+				var imgElement = document.querySelector(id);
+				imgElement.innerHTML = '<img width='+ tamaño +' height='+ tamaño +' class="me-1 '+ css +'" src="/storage/avatars/' + img + ' " alt="">';
+			}
+			if (response.status == 300) {
+				$("#btn_delete_avatar").hide();
+				var img = response.img;
+				var imgElement = document.querySelector(id);
+				imgElement.innerHTML = '<img width='+ tamaño +' height='+ tamaño +' class="me-1 '+ css +'" src="/storage/avatars/perfil.png " alt="">';
+			}
+		},
+		error: function () {
+			error_ajax();
+		},
+	});
+}

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AvatarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,7 @@ use App\Http\Controllers\Auth\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 //Este es la view de loguin
 Route::get('/', [EmployeeController::class, 'index'])->name('index');
 Route::get('/email_recuperacion', [EmployeeController::class, 'email_recuperacion'])->name('email_recuperacion');
@@ -30,6 +28,12 @@ Route::post('/update_Password', [AuthController::class, 'eupdatePassword'])->nam
 Route::post('/update_Password_secion', [AuthController::class, 'eupdatePasswordSecion'])->name('eupdatePasswordSecion');
 Route::post('/getName', [AuthController::class, 'getName'])->name('getName');
 Route::post('/verificaEmailExiste', [AuthController::class, 'verificaEmailExiste'])->name('verificaEmailExiste');
+
+//controlador AuthController Sesión  match(['get', 'post'], '
+Route::match(['get', 'post'], '/insert_avatar', [AvatarController::class, 'insert_avatar'])->name('insertAvatar');
+Route::post('/get_avatar', [AvatarController::class, 'get_avatar'])->name('getAvatar');
+Route::match(['get', 'post'], '/avatar/{token}', [AvatarController::class, 'avatar'])->name('Avatar');//NAV
+Route::post('/delete_avatar', [AvatarController::class, 'delete_avatar'])->name('delateAvatar');
 
 
 

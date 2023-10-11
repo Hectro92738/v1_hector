@@ -8,20 +8,8 @@ $(document).ready(function () {
     manejarAyuda(helpIcon, helpMessage);
     manejarAyuda(helpIconPass, helpMessagePass);
     //-------------------------------------------------------------------------------
-    // Selecciona el elemento checkbox y el campo de contraseña
-    var $showPasswordCheckbox = $('#show-password');
-    var $passwordInput = $('#modal-password');
-    // Agrega un evento change al checkbox
-    $showPasswordCheckbox.change(function () {
-        // Si el checkbox está seleccionado, cambia el tipo del campo de contraseña a "text"
-        if ($(this).is(':checked')) {
-            $passwordInput.attr('type', 'text');
-        } else {
-            // Si el checkbox no está seleccionado, vuelve a cambiar el tipo a "password"
-            $passwordInput.attr('type', 'password');
-        }
-    });
-    //--------------------------------------------------------------------------------------------------
+    VisibilityPassword('show-password', ['modal-password']);
+    //-------------------------------------------------------------------------------
     var formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     $(document).on("submit", "#form_login", function (e) {
         e.preventDefault();
@@ -52,6 +40,7 @@ $(document).ready(function () {
                     // Genera un token aleatorio (puedes utilizar una librería de generación de tokens más segura)
                     const token = Math.random().toString(36).substring(2);
                     const email = response.email;
+                    const numEmp = response.numEmp;
                     const changePassword = response.changePassword;
                     // Almacena el token y el correo electrónico en una cookie
                     document.cookie = `session_token=${token}; path=/; SameSite=None; Secure; max-age=1200;`;
@@ -59,17 +48,18 @@ $(document).ready(function () {
                     // Redirige al usuario a la página de inicio
                     appData.token = token;
                     appData.email = email;
+                    appData.numEmp = numEmp;
                     appData.changePassword = changePassword;
                     // Muestra un mensaje de error
                     alerta("success", "Bienvenido");
                     if (response.changePassword == false) {
                         setTimeout(function () {
-                            window.location.href = `${CrudRoute}/${token}?email=${email}&token=${token}&changePassword=${appData.changePassword}`;
+                            window.location.href = `${CrudRoute}/${token}?email=${email}&token=${token}&changePassword=${appData.changePassword}&numEmp=${appData.numEmp}`;
                         }, 2000);
                     }
                     if (response.changePassword == true) {
                         setTimeout(function () {
-                            window.location.href = `${login_cambio_PaswordRoute}/${token}?email=${email}&token=${token}&changePassword=${appData.changePassword}`;
+                            window.location.href = `${login_cambio_PaswordRoute}/${token}?email=${email}&token=${token}&changePassword=${appData.changePassword}&numEmp=${appData.numEmp}`;
                         }, 2000);
                     }
                 }

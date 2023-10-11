@@ -24,9 +24,9 @@ class EmployeeController extends Controller
    public function home($token)
    {
       $storedToken = $_COOKIE['session_token'] ?? null;
-      //--------------------------------------------------------
       if ($token === $storedToken) {
-         return view('home');
+         //--------------------------------------------------------
+         return view('All.home');
          //--------------------------------------------------------
       } else {
          // El token no es válido, redirige al usuario a la página de inicio de sesión
@@ -36,8 +36,8 @@ class EmployeeController extends Controller
    public function login_cambio_Pasword($token)
    {
       $storedToken = $_COOKIE['session_token'] ?? null;
-      //--------------------------------------------------------
       if ($token === $storedToken) {
+         //--------------------------------------------------------
          return view('login_cambioPass');
          //--------------------------------------------------------
       } else {
@@ -51,13 +51,15 @@ class EmployeeController extends Controller
       $storedToken = $_COOKIE['session_token'] ?? null;
       if ($token === $storedToken) {
          //--------------------------------------------------------
-         return view('index');
+         return view('All.index');
          //--------------------------------------------------------
       } else {
          return redirect('/')->with('error', 'Sesión invalida');
       }
    }
 
+
+   //********************************************************************************************
    public function fetchAll(Request $request)
    {
       $token = $request->query('token');
@@ -113,15 +115,15 @@ class EmployeeController extends Controller
       if ($storedToken && $token === $storedToken) {
          //--------------------------------------------------------
          $id = $request->input('id'); // Obtén el ID del producto desde la solicitud
-         // Busca el empleado por su ID
+         // Busca el producto por su ID
          $employee = Employee::find($id);
          if (!$employee) {
             return response()->json([
                'status' => 404,
-               'msj' => 'Empleado no encontrado.',
+               'msj' => 'producto no encontrado.',
             ]);
          }
-         // Elimina el registro del empleado de la base de datos
+         // Elimina el registro del producto de la base de datos
          $employee->delete();
          // Elimina también el archivo de avatar asociado, si existe
          if ($employee->avatar) {
@@ -129,7 +131,7 @@ class EmployeeController extends Controller
          }
          return response()->json([
             'status' => 200,
-            'msj' => 'Empleado eliminado correctamente.',
+            'msj' => 'producto eliminado',
          ]);
          //--------------------------------------------------------
       } else {

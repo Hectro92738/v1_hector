@@ -29,6 +29,7 @@ class AuthController extends Controller
                     return response()->json([
                         'success' => true,
                         'email' => $user->EMAIL,
+                        'numEmp' => $user->EMP_NUM,
                         'changePassword' => true,
                     ]);
                 }
@@ -40,6 +41,7 @@ class AuthController extends Controller
                     return response()->json([
                         'success' => true,
                         'email' => $user->EMAIL,
+                        'numEmp' => $user->EMP_NUM,
                         'changePassword' => false, // Indicar que no es necesario cambiar la contraseña
                     ]);
                 }
