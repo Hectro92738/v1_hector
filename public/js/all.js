@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	var correo = appData.email;
     var numEmp = appData.numEmp;
-	obtenerAvatar(numEmp, '#avatar', '30', 'rounded-circle'); 
+	obtenerAvatar(numEmp, '#avatar', '30', '30', 'rounded-circle'); 
 	$.ajaxSetup({
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

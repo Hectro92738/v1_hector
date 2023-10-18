@@ -7,7 +7,7 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a
-                href="{{ url('/Crud') }}/{{ request('token') }}?email={{ request('email') }}&token={{ request('token') }}&numEmp={{ request('numEmp') }}"class="nav-link"><i
+                href="{{ url('/index') }}/{{ request('token') }}?email={{ request('email') }}&token={{ request('token') }}&numEmp={{ request('numEmp') }}"class="nav-link"><i
                     class="bi bi-house me-1"></i>Principal
             </a>
         </li>

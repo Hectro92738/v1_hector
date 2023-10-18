@@ -100,6 +100,7 @@ function cerrarSesion() {
 		},
 		error: function () {
 			alert('Ha ocurrido un error al cerrar la sesión.');
+			setInterval(actualizar, 2000);
 		},
 	});
 }
@@ -151,7 +152,7 @@ function obtenerNombreEmpleado(correo) {
 		},
 	});
 }
-function obtenerAvatar(numEmp, id, tamaño, css) {
+function obtenerAvatar(numEmp, id, width, height, css) {
 	$.ajax({
 		url: getAvatarRoute,
 		dataType: 'json',
@@ -167,13 +168,37 @@ function obtenerAvatar(numEmp, id, tamaño, css) {
 				$("#btn_delete_avatar").show();
 				var img = response.img;
 				var imgElement = document.querySelector(id);
-				imgElement.innerHTML = '<img width='+ tamaño +' height='+ tamaño +' class="me-1 '+ css +'" src="/storage/avatars/' + img + ' " alt="">';
+				imgElement.innerHTML = '<img width='+ width +' height='+ height +' class="me-1 '+ css +'" src="/storage/avatars/' + img + ' " alt="">';
 			}
 			if (response.status == 300) {
 				$("#btn_delete_avatar").hide();
 				var img = response.img;
 				var imgElement = document.querySelector(id);
-				imgElement.innerHTML = '<img width='+ tamaño +' height='+ tamaño +' class="me-1 '+ css +'" src="/storage/avatars/perfil.png " alt="">';
+				imgElement.innerHTML = '<img width='+ width +' height='+ height +' class="me-1 '+ css +'" src="/storage/avatars/perfil.png " alt="">';
+			}
+		},
+		error: function () {
+			error_ajax();
+		},
+	});
+}
+function Menu(numEmp) {
+	$.ajax({
+		url: getMenuRoute,
+		dataType: 'json',
+		method: 'POST',
+		data: {
+			numEmp: numEmp,
+		},
+		success: function (response) {
+			if (response.status == 700) {
+				cerrarSesion();
+			}
+			if (response.status == 200) {
+				console.log(response);
+			}
+			if (response.status == 404) {
+				alerta("danger", response.msj);
 			}
 		},
 		error: function () {

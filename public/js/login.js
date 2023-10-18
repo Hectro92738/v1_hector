@@ -26,14 +26,15 @@ $(document).ready(function () {
                     error_formulario("modal-email", "Formato Incorrecto de Email");
                     return false;
                 }
+        var formData = new FormData($(this)[0]);
         $.ajax({
             url: loginRoute,
             method: 'POST',
-            data: {
-                email: $('#modal-email').val(),
-                password: $('#modal-password').val(),
-                _token: $('input[name="_token"]').val()
-            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
             success: function (response) {
                 console.log(response);
                 if (response.success == true) {
@@ -43,15 +44,15 @@ $(document).ready(function () {
                     const numEmp = response.numEmp;
                     const changePassword = response.changePassword;
                     // Almacena el token y el correo electrónico en una cookie
-                    document.cookie = `session_token=${token}; path=/; SameSite=None; Secure; max-age=1200;`;
-                    document.cookie = `user_email=${email}; path=/; SameSite=None; Secure; max-age=1200;`;
+                    document.cookie = `session_token=${token}; path=/; max-age=1200;`;
+                    document.cookie = `user_email=${email}; path=/; max-age=1200;`;
                     // Redirige al usuario a la página de inicio
                     appData.token = token;
                     appData.email = email;
                     appData.numEmp = numEmp;
                     appData.changePassword = changePassword;
                     // Muestra un mensaje de error
-                    alerta("success", "Bienvenido");
+                    alerta("success", response.name);
                     if (response.changePassword == false) {
                         setTimeout(function () {
                             window.location.href = `${CrudRoute}/${token}?email=${email}&token=${token}&changePassword=${appData.changePassword}&numEmp=${appData.numEmp}`;

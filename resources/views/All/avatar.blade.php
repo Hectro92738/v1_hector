@@ -1,7 +1,7 @@
 @extends('layouts.header_All') {{-- Encabezado de todas las paguinas --}}
 @section('title', 'XXHR-UTEQ') {{-- Uso de variables en cada documento en este caso en Titulo  --}}
 @section('Js')
-    <script src="{{ asset('js/avatar.js') }}"></script>
+    <script src="{{ asset('js/All/avatar.js') }}"></script>
     <script src="{{ asset('js/all.js') }}"></script>
 @endsection
 @section('content') {{-- Dentro del body hemos llamado "content" la sección donde va a variar el contenido del body --}}
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <!-- Sección del formulario -->
-            <div id="contenedor_login" class=" col-md-6 mt-4">
+            <div id="contenedor_login" class=" col-md-6 mt-2">
                 <form id="form_avatar" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="input-group mt-4" id="group-modal_avatar">

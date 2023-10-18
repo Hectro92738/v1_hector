@@ -33,7 +33,7 @@
         var appData = {
             email: '{{ request('email') }}',
             token: '{{ request('token') }}',
-            num_Emp: '{{ request('numEmp') }}',
+            numEmp: '{{ request('numEmp') }}',
             changePassword: '{{ request('changePassword') }}',
         };
     </script>
@@ -41,10 +41,10 @@
         @yield('content')
     </div>
     <div id="mensaje" class="d-flex flex-column position-fixed"
-        style="font-size: 12px; top: 8px; left: 30%; transform: translateX(-50%); z-index: 2000;"></div>
+        style="font-size: 12px; top: 8px; left: 36%; transform: translateX(-50%); z-index: 2000;"></div>
     <script>
         var loginRoute = '{{ route('login') }}'; //valida el pass y usu
-        var CrudRoute = '{{ url('/Crud') }}';
+        var indexRoute = '{{ url('/index') }}';
         var login_cambio_PaswordRoute = '{{ url('/login_cambio_Pasword') }}';
         var eupdatePasswordSecionRoute = '{{ route('eupdatePasswordSecion') }}' + '?token=' + appData.token;
         var getNameRoute = '{{ route('getName') }}' + '?token=' + appData.token;

@@ -9,17 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
-   public function avatar($token)
-   {
-      $storedToken = $_COOKIE['session_token'] ?? null;
-      if ($token === $storedToken) {
-         //--------------------------------------------------------
-         return view('All.avatar');
-         //--------------------------------------------------------
-      } else {
-         return redirect('/')->with('error', 'Sesión invalida');
-      }
-   }
 
    public function insert_avatar(Request $request)
    {
@@ -32,23 +21,23 @@ class AvatarController extends Controller
 
          // Busca si ya existe un registro con el EMP_NUM
          $existingAvatar = Avatar::where('EMP_NUM', $empNum)->first();
-
+         $path="/var/www/html/laravel_v1/storage/";
          if ($existingAvatar) {
             // Si el registro existe, actualiza la columna IMG con la nueva imagen
             $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/avatars', $fileName);
+            $file->storeAs('avatars', $fileName);
             // Elimina la imagen anterior de la carpeta de avatars
-            Storage::delete('public/avatars/' . $existingAvatar->IMG);
+            Storage::delete('avatars/' . $existingAvatar->IMG);
             // Actualiza la imagen en la base de datos
             $existingAvatar->update(['IMG' => $fileName]);
             return response()->json([
                'status' => 200,
-               'msj'    => 'Avatar actualizado',
+               'msj'    => 'Avatar actualizado'.getcwd(),
             ]);
          } else {
             // Si el registro no existe, crea uno nuevo
             $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/avatars', $fileName);
+            $file->storeAs('avatars', $fileName);
             $empData = ['EMP_NUM' => $empNum, 'IMG' => $fileName];
             Avatar::create($empData);
 

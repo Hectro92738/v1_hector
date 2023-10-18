@@ -9,16 +9,6 @@
         <div class="row py-5">
             <!-- Sección de bienvenida y mensaje -->
             <div class="col-md-6 mt-3">
-                <h4 id="nombre"></h4>
-                <p>Por razones de seguridad, debes de generar una contraseña a continuación.</p>
-                <hr>
-                <a class="navbar-brand py-3" href="#">
-                    <img class="center-image" width="300" class="img-thumbnail"
-                        src="{{ asset('images/LOGO_UTEQ2022_COMPLETO.png') }}" alt="">
-                </a>
-            </div>
-            <!-- Sección del formulario -->
-            <div class="col-md-6 mt-3">
                 <h2>Crea una Contraseña</h2>
                 <form id="form_cambio_Password"> {{-- method="POST" action="{{ route('login') }} --}}
                     @csrf
@@ -36,14 +26,24 @@
                         <input type="password" id="modal-confirmPassword" name="modal-confirmPassword" class="form-control"
                             placeholder="confirm Password">
                     </div>
-                    <div class="py-2" style="font-size: 13px;">
-                        <input class="mt-2" type="checkbox" class="form-check-input" id="show-passwords"> Mostrar
-                        contraseñas
-                    </div>
+                    <label for="show-password" class="custom-checkbox-label">
+                        <input type="checkbox" id="show-passwords" class="custom-checkbox">
+                        Mostrar Contraseña
+                    </label>
                     <div class="form-group py-5">
-                        <button type="submit" id="botonn" class="btn btn-block me-4">Enviar</button>
+                        <button type="submit" id="css-botonn" class="btn btn-block me-3">Ingresar</button>
                     </div>
                 </form>
+            </div>
+            <!-- Sección del formulario -->
+            <div class="col-md-6 mt-3">
+                <h4 id="nombre"></h4>
+                <p>Por razones de seguridad, debes de generar una contraseña a continuación.</p>
+                <hr>
+                <a class="navbar-brand py-3" href="#">
+                    <img class="center-image" width="300" class="img-thumbnail"
+                        src="{{ asset('images/LOGO_UTEQ2022_COMPLETO.png') }}" alt="">
+                </a>
             </div>
         </div>
     </div>

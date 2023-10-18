@@ -1,4 +1,5 @@
 $(function () {
+    Menu(appData.numEmp);
     $.ajaxSetup({//configuración global de AJAX en jQuery utilizando $.ajaxSetup()
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

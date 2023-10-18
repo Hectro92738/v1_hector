@@ -59,7 +59,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4"
             style="background-color: rgb(18, 71, 115); font-size: 13px;">
             <!-- Brand Logo -->
-            <a href="{{ url('/Crud') }}/{{ request('token') }}?email={{ request('email') }}&token={{ request('token') }}&numEmp={{ request('numEmp') }}"
+            <a href="{{ url('/index') }}/{{ request('token') }}?email={{ request('email') }}&token={{ request('token') }}&numEmp={{ request('numEmp') }}"
                 class="brand-link" style="background-color: rgb(252, 252, 253)">
                 <img src="{{ asset('dist/img/LOGO_AZUL_UTEQ.png') }}" alt="UTEQ Logo" style="opacity: .8">
             </a>
@@ -67,146 +67,15 @@
             <div class="sidebar">
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Configuraciones Internas
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('/home') }}/{{ request('token') }}?email={{ request('email') }}&token={{ request('token') }}&numEmp={{ request('numEmp') }}"
-                                        class="nav-link">
-                                        <i class="far fa-solid fa-circle nav-icon"></i>
-                                        <p>Usuarios</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-circle nav-icon"></i>
-                                        <p>Roles</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Gráficas
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-circle nav-icon"></i>
-                                        <p>Archivo Digital</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-circle nav-icon"></i>
-                                        <p>Permisos Económicos</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-header">ARCHIVO DIGITAL</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Archivo Digital
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-folder-open nav-icon"></i>
-                                        <p>Documentos Personales</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-address-card nav-icon"></i>
-                                        <p>Panel Aprobación</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-header">PRESTACIONES</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-bars"></i>
-                                <p>
-                                    Permisos Económicos
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-user nav-icon"></i>
-                                        <p>Panel Aprobación</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-star nav-icon"></i>
-                                        <p>Instalación firma Digital</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-circle nav-icon"></i>
-                                        <p>Solicitud Permisos Económicos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-solid fa-address-card nav-icon"></i>
-                                        <p>Panel RH</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
+                    <ul class="nav nav-pills nav-sidebar flex-column" id="menu-container" data-widget="treeview"
+                        role="menu" data-accordion="false">
+                        <!-- Aquí se insertarán los menús y submenús dinámicamente -->
                     </ul>
                 </nav>
             </div>
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            {{-- <section class="content">
-                <div class="card">
-                    <div class="card-header">
-                        <!--<h3 class="card-title">Projects</h3>-->
-                        @yield('card-title')
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <h4>Hola</h4>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-            </section> --}}
             @yield('content')
             {{-- MODAL- SALIR --}}
             <div class="modal fade" id="drop_sesion" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -222,9 +91,8 @@
                             Estás seguro (a) de cerrar sesión
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"
-                                data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" id="salir" class="btn botonn" >Cerrar Sesión</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" id="salir" class="btn botonn">Cerrar Sesión</button>
                         </div>
                     </div>
                 </div>
@@ -240,17 +108,23 @@
         <!-- /.control-sidebar -->
     </div>
     <div id="mensaje" class="d-flex flex-column position-fixed"
-        style="font-size: 12px; top: 8px; left: 30%; transform: translateX(-50%); z-index: 2000;"></div>
+        style="font-size: 12px; top: 8px; left: 36%; transform: translateX(-50%); z-index: 2000;"></div>
     <!-- ./wrapper -->
     <script>
-        var CrudRoute = '{{ url('/Crud') }}';
-        var indexRoute = '{{ url('/') }}'; //Cuando cierre sesión
+        var indexRoute = '{{ url('/index') }}';
+        var Route = '{{ url('/') }}'; //Cuando cierre sesión
         var logoutRoute = '{{ route('logout') }}'; //Cuando cierre sesión
         var getNameRoute = '{{ route('getName') }}' + '?token=' + appData.token;
         //------------------ Avatar ------------------------------------
         var insertAvatarRoute = '{{ route('insertAvatar') }}' + '?token=' + appData.token;
         var getAvatarRoute = '{{ route('getAvatar') }}' + '?token=' + appData.token;
         var delateAvatarRoute = '{{ route('delateAvatar') }}' + '?token=' + appData.token;
+        //------------------ Menu ------------------------------------
+        var getMenuSubmenuRoute = '{{ route('getMenuSubmenu') }}' + '?token=' + appData.token;
+        var informacionPersonalRoute = '{{ route('informacionPersonal') }}' + '?token=' + appData.token;
+        //------------------ IMAGENES ------------------------------------
+        var imgRoute = '{{ asset('storage/app/avatars/') }}';
+        var imgeRoute = '{{ asset('storage/app/images/') }}';
     </script>
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    var numEmp = appData.numEmp;
+    console.log(numEmp);
     VisibilityPassword('show-passwords', ['modal-newPassword','modal-confirmPassword']);
     //---------------------------------------------------------------------------
     $("#mensajeAlerta").hide();
@@ -42,7 +44,7 @@ $(document).ready(function () {
                 return false;
             } else
                 if (!formatoContrasena.test($("#modal-newPassword").val())) {
-                    error_formulario("modal-newPassword", "Formato incorrecto (minimo 8 caracteres, Mayusculas y Minisculas)");
+                    error_formulario("modal-newPassword", "Formato incorrecto (minimo 8 caracteres, Mayusculas y Minusculas)");
                     return false;
                 } else
                     if ($("#modal-newPassword").val() !== $("#modal-confirmPassword").val()) {
@@ -69,7 +71,7 @@ $(document).ready(function () {
                         var mensaje = document.querySelector('#mensajee');
                         mensaje.innerHTML = msj;
                         setTimeout(function () {
-                            window.location.href = `${CrudRoute}/${appData.token}?email=${appData.email}&token=${appData.token}`;
+                            window.location.href = `${CrudRoute}/${appData.token}?email=${appData.email}&token=${appData.token}&numEmp=${numEmp}`;
                             //setInterval(actualizar, 1000);
                         }, 8000);
                     } else {

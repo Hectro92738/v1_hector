@@ -12,7 +12,7 @@ class XxhrEstructuraUteq extends Model implements AuthenticatableContract
     use HasFactory, Authenticatable;
 
     protected $table = 'xxhr_estructura_uteq';
-    protected $fillable = ['EMAIL', 'EMP_NUM', 'ESTATUS', 'PASSWORD'];
+    protected $fillable = ['EMAIL', 'EMP_NUM', 'ESTATUS', 'PASSWORD', 'POS_TIPO_DESC', 'NOM_NAME_1'];
     protected $primaryKey = 'EMP_NUM'; // Especifica la columna de clave primaria
 
     public $timestamps = false;

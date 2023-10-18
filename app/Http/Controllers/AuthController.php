@@ -13,8 +13,8 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $email = $request->input('email');
-        $password = $request->input('password');
+        $email = $request->input('modal-email');
+        $password = $request->input('modal-password');
 
         $user = XxhrEstructuraUteq::where('EMAIL', $email)
             ->where('ESTATUS', 'A')
@@ -29,6 +29,7 @@ class AuthController extends Controller
                     return response()->json([
                         'success' => true,
                         'email' => $user->EMAIL,
+                        'name' => 'Bienvenid(@) ' . $user->EMP_NAME,
                         'numEmp' => $user->EMP_NUM,
                         'changePassword' => true,
                     ]);
@@ -41,6 +42,7 @@ class AuthController extends Controller
                     return response()->json([
                         'success' => true,
                         'email' => $user->EMAIL,
+                        'name' => 'Bienvenid(@) ' . $user->EMP_NAME,
                         'numEmp' => $user->EMP_NUM,
                         'changePassword' => false, // Indicar que no es necesario cambiar la contraseña
                     ]);
@@ -124,7 +126,6 @@ class AuthController extends Controller
             ]);
         }
     }
-
     public function getName(Request $request)
     {
         $token = $request->query('token');
@@ -175,5 +176,82 @@ class AuthController extends Controller
             'msj'    => 'URL eviado',
         ]);         //--------------------------------------------------------
 
+    }
+
+    public function get_Menu(Request $request)
+    {
+        $token = $request->query('token');
+        $storedToken = $_COOKIE['session_token'] ?? null;
+
+        if ($storedToken && $token === $storedToken) {
+            $numEmp = $request->input('numEmp');
+
+            // Buscar el usuario por EMP_NUM
+            $user = XxhrEstructuraUteq::where('EMP_NUM', $numEmp)->first();
+
+            if ($user) {
+                $POS_TIPO_DESC = $user->POS_TIPO_DESC;
+                $NOM_NAME_1 = $user->NOM_NAME_1;
+
+                return response()->json([
+                    'status' => 200,
+                    'POS_TIPO_DESC' => $POS_TIPO_DESC,
+                    'NOM_NAME_1' => $NOM_NAME_1,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'msj' => 'Usuario no encontrado - menu',
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 700,
+                'msj' => 'Sesión inválida',
+            ]);
+        }
+    }
+    
+    public function informacion_personal(Request $request)
+    {
+        $token = $request->query('token');
+        $storedToken = $_COOKIE['session_token'] ?? null;
+        if ($storedToken && $token === $storedToken) {
+            //--------------------------------------------------------
+            $numEmp = $request->input('numEmp');
+
+            // Buscar el usuario por EMP_NUM
+            $user = XxhrEstructuraUteq::where('EMP_NUM', $numEmp)->first();
+
+            if ($user) {
+                $POS_NAME = $user->POS_NAME;
+                $EMP_NAME = $user->EMP_NAME;
+                $EMAIL = $user->EMAIL;
+                $EMP_CURP = $user->EMP_CURP;
+                $EMP_IMSS = $user->EMP_IMSS;
+                $EMP_BIRTHDATE = $user->EMP_BIRTHDATE;
+
+                return response()->json([
+                    'status' => 200,
+                    'POS_NAME' => $POS_NAME,
+                    'EMP_NAME' => $EMP_NAME,
+                    'EMAIL' => $EMAIL,
+                    'EMP_CURP' => $EMP_CURP,
+                    'EMP_IMSS' => $EMP_IMSS,
+                    'EMP_BIRTHDATE' => $EMP_BIRTHDATE,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'msj' => 'Usuario no encontrado - menu',
+                ]);
+            }
+            //--------------------------------------------------------
+        } else {
+            return response()->json([
+                'status' => 700,
+                'msj' => 'Sesión inválida',
+            ]);
+        }
     }
 }

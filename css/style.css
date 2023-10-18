@@ -1,0 +1,76 @@
+.botonn{
+    background-color: rgb(18, 71, 115);
+    color: white;
+    border: none;
+}
+#css-botonn{
+    background-color: rgb(18, 71, 115);
+    color: white;
+    border: none;
+}
+.color_barra{
+    background-color: rgb(18, 71, 115);
+    color: white;
+}
+/*-------------- COLORES DE LAS ALERTAS -----------*/
+.custom-success {
+    background-color: #73d389;
+    color: #000000;
+    -webkit-text-stroke: .5px rgb(21, 114, 20); /* Para navegadores basados en WebKit (por ejemplo, Chrome, Safari) */
+}
+
+.custom-danger {
+    background-color: #d67781;
+    color: #000000;
+    -webkit-text-stroke: .5px rgb(122, 20, 20); /* Para navegadores basados en WebKit (por ejemplo, Chrome, Safari) */
+}
+.custom-info{
+    background-color: #d9e06e;
+    color: #000000;
+    -webkit-text-stroke: .5px rgb(108, 122, 20); /* Para navegadores basados en WebKit (por ejemplo, Chrome, Safari) */
+}
+/*------------ ICONO DE AYUDA -----------*/
+.help-icon {
+    padding: 4px 4px; /* Ajusta el padding según sea necesario */
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 10px; /* Espacio entre el ícono y el texto */
+    color: #000000; /* Color del ícono, puedes personalizarlo */
+}
+
+.help-message {
+    display: none;
+    font-size: 11px;
+    background-color: #ffffff;
+    border: 1px solid #7c7c7c4e;
+    padding: 13px;
+    position: absolute;
+    z-index: 1000; /* Para asegurarte de que esté por encima de otros elementos */
+    max-width: 300px; /* Ancho máximo del mensaje */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+}
+
+.infor{
+    font-size: 13px;
+}
+/*estilo - avatar*/
+.profile-image {
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: -8px -5px 10px rgba(0, 0, 0, 0.288); 
+}
+
+.custom-checkbox-label {
+    display: flex; /* Para alinear el checkbox y la etiqueta en línea */
+    align-items: center; /* Para centrar verticalmente el checkbox y la etiqueta */
+    font-size: 13px; /* Tamaño de fuente de la etiqueta */
+    padding-top: 10px;
+}
+
+.custom-checkbox {
+    width: 18px; /* Ancho deseado de la casilla del checkbox */
+    height: 18px; /* Altura deseada de la casilla del checkbox */
+    margin-right: 10px; /* Espacio entre el checkbox y la etiqueta */
+    /* Estilos adicionales para personalizar la apariencia del checkbox */
+}
