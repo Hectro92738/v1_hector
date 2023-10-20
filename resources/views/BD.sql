@@ -11,7 +11,7 @@ CREATE TABLE xxhr_estructura_uteq (
     CAT_FED varchar(150) DEFAULT NULL,
     SDO_FED decimal(10, 2) DEFAULT NULL,
     GPO_FED varchar(150) DEFAULT NULL,
-    HRS_FED int(25) DEFAULT NULL,
+    HRS_FED varchar(25) DEFAULT NULL,
     EMP_NUM varchar(25) NOT NULL,
     EMP_NAME varchar(150) DEFAULT NULL,
     EMP_CURP varchar(20) DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE xxhr_estructura_uteq (
     BASE_NAME_1 varchar(20) DEFAULT NULL,
     ASG_REF varchar(150) DEFAULT NULL,
     EMAIL varchar(150) DEFAULT NULL,
-    QUINQUENIO float DEFAULT NULL,
+    QUINQUENIO varchar(5) DEFAULT NULL,
     EMP_ACT_CON date DEFAULT NULL,
     EMP_BIRTHDATE date DEFAULT NULL,
     MARITAL_ESTATUS varchar(255) DEFAULT NULL,
@@ -43,6 +43,7 @@ CREATE TABLE xxhr_estructura_uteq (
     ESTATUS varchar(5) DEFAULT NULL
 );
 CREATE TABLE xxhr_estructura_historial_uteq (
+    ID_HISTORIAL int(10) AUTO_INCREMENT ,
     FECHA date DEFAULT NULL,
     DIRE varchar(10) DEFAULT NULL,
     DEPT varchar(10) DEFAULT NULL,
@@ -80,7 +81,7 @@ CREATE TABLE xxhr_estructura_historial_uteq (
     BASE_NAME_1 varchar(20) DEFAULT NULL,
     ASG_REF varchar(150) DEFAULT NULL,
     EMAIL varchar(150) DEFAULT NULL,
-    QUINQUENIO int(255) DEFAULT NULL,
+    QUINQUENIO varchar(5) DEFAULT NULL,
     EMP_ACT_CON date DEFAULT NULL,
     EMP_BIRTHDATE date DEFAULT NULL,
     MARITAL_ESTATUS varchar(255) DEFAULT NULL,
@@ -111,8 +112,12 @@ ALTER TABLE xxhr_estructura_historial_uteq
 ADD CONSTRAINT fk_historial FOREIGN KEY (EMP_NUM) REFERENCES xxhr_estructura_uteq (EMP_NUM);
 -------------------ADD PRIMARY KEY-----------------------
 ALTER TABLE xxhr_estructura_historial_uteq
-ADD KEY EMP_NUM (EMP_NUM);
+ADD KEY ID_HISTORIAL (ID_HISTORIAL);
 
 ALTER TABLE xxhr_estructura_historial_uteq
 ADD CONSTRAINT historial_ibfk_1 FOREIGN KEY (EMP_NUM) REFERENCES xxhr_estructura_uteq (EMP_NUM);
 COMMIT;
+
+ALTER TABLE xxhr_estructura_uteq
+MODIFY QUINQUENIO VARCHAR(5);
+

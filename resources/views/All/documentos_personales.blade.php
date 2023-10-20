@@ -10,4 +10,7 @@
             <span id="info"></span>
         </div>
     </div>
+    <script>
+        var informacionPersonalRoute = '{{ route('informacionPersonal') }}' + '?token=' + appData.token;
+    </script>
 @endsection {{-- Fin del contenido del body  --}}

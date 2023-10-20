@@ -1,4 +1,5 @@
-.botonn{
+
+#botonn{
     background-color: rgb(18, 71, 115);
     color: white;
     border: none;
@@ -73,4 +74,21 @@
     height: 18px; /* Altura deseada de la casilla del checkbox */
     margin-right: 10px; /* Espacio entre el checkbox y la etiqueta */
     /* Estilos adicionales para personalizar la apariencia del checkbox */
+}
+.estatus-inactivo{
+    background-color: #f800195a;
+}
+.icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacio entre los íconos */
+}
+
+.icon-container label {
+    flex-basis: calc(33.33% - 100px); /* Ajusta el ancho según la cantidad de columnas deseadas */
+}
+.botonn{
+    background-color: rgb(18, 71, 115);
+    color: white;
+    border: none;
 }

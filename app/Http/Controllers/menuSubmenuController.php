@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class menuSubmenuController extends Controller
 {
-
     public function get_MenuSubmenu(Request $request)
     {
         $token = $request->query('token');
@@ -21,6 +20,12 @@ class menuSubmenuController extends Controller
             // Realiza una consulta en la tabla menu_submenu para obtener los datos según EMP_NUM
             $menuSubmenu = menuSubmenu::with(['menu', 'submenu'])
                 ->where('EMP_NUM', $numEmp)
+                ->whereHas('menu', function ($query) {
+                    $query->where('ESTATUS', 'A');
+                })
+                ->whereHas('submenu', function ($query) {
+                    $query->where('ESTATUS', 'A');
+                })
                 ->get();
 
             // Devuelve los datos en formato JSON
@@ -29,12 +34,11 @@ class menuSubmenuController extends Controller
                 'datos' => $menuSubmenu,
                 'msj' => 'Menús y submenús encontrados'
             ]);
-            
         } else {
             //--------------------------------------------------------
             return response()->json([
                 'status' => 700,
-                'msj'    => 'Sesión inválida',
+                'msj' => 'Sesión inválida',
             ]);
         }
     }

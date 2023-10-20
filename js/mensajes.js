@@ -33,9 +33,6 @@ function alerta(tipo, mensaje) {
             icono = "bi bi-exclamation-lg";
             claseAlerta = "custom-info";
             break;
-        case "warning":
-            icono = "bi bi-exclamation-triangle";
-            break;
         case "danger":
             icono = "bi bi-exclamation-circle";
             claseAlerta = "custom-danger";
@@ -232,6 +229,7 @@ function Menu(numEmp) {
                 cerrarSesion();
             }
             if (response.status == 200) {
+                console.log(response);
                 // Limpia el contenedor antes de agregar nuevos elementos
                 $("#menu-container").empty();
                 // Objeto para almacenar menús y sus submenús
@@ -251,7 +249,7 @@ function Menu(numEmp) {
                         menuSubmenuMap[menuId].submenus.push(item.submenu);
                     }
                 });
-                console.log(menuSubmenuMap);
+                //console.log(menuSubmenuMap);
                 // Crea los menús y submenús en función de los datos agrupados
                 $.each(menuSubmenuMap, function (menuId, menuSubmenus) {
                     var menuHtml = '<li class="nav-item">';
@@ -277,9 +275,9 @@ function Menu(numEmp) {
                                 var formattedName = submenu.NAME_SUBMENU.toLowerCase().replace(/ /g,"_");
                                 // Elimina acentos y diacríticos
                                 formattedName = formattedName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                                var submenuURL ="http://localhost/img/laravel_v1/" +formattedName +"/" + appData.token;
+                                var submenuURL ="http://localhost/laravel_v1/" +formattedName +"/" + appData.token;
 
-                                menuHtml += '<li class="nav-item">';
+                                menuHtml += '<li class="nav-item ms-3">';
                                 menuHtml +=
                                     '<a href="' +
                                     submenuURL +
@@ -340,5 +338,26 @@ function informacion_personal(numEmp) {
                 reject("Error en la solicitud AJAX");
             },
         });
+    });
+}
+function informacion_todos_empleados(){
+    $.ajax({
+        url: getAllEmpleadosRoute,
+        dataType: "json",
+        method: "POST",
+        success: function (response) {
+            if (response.status == 700) {
+                setTimeout(function () {
+                    cerrarSesion();
+                }, 1000);
+            }
+            if (response.status == 200) {
+                //alerta("success", response.msj)
+                console.log(resp)
+            }
+        },
+        error: function () {
+            error_ajax();
+        },
     });
 }

@@ -54,13 +54,11 @@ class AuthController extends Controller
             'msj'    => 'Datos Incorrectos',
         ]);
     }
-
     public function logout()
     {
         Auth::logout();
         return redirect('/');
     }
-
     public function eupdatePassword(Request $request)
     {
         // Validar los datos recibidos
@@ -87,7 +85,6 @@ class AuthController extends Controller
             'msj'    => 'Tu contraseña a sido actualizada correctamente',
         ]);
     }
-
     public function eupdatePasswordSecion(Request $request)
     {
         $token = $request->query('token');
@@ -177,7 +174,6 @@ class AuthController extends Controller
         ]);         //--------------------------------------------------------
 
     }
-
     public function get_Menu(Request $request)
     {
         $token = $request->query('token');
@@ -211,7 +207,6 @@ class AuthController extends Controller
             ]);
         }
     }
-    
     public function informacion_personal(Request $request)
     {
         $token = $request->query('token');
@@ -246,6 +241,34 @@ class AuthController extends Controller
                     'msj' => 'Usuario no encontrado - menu',
                 ]);
             }
+            //--------------------------------------------------------
+        } else {
+            return response()->json([
+                'status' => 700,
+                'msj' => 'Sesión inválida',
+            ]);
+        }
+    }
+    public function getAll_Empleados(Request $request)
+    {
+        $token = $request->query('token');
+        $storedToken = $_COOKIE['session_token'] ?? null;
+        if ($storedToken && $token === $storedToken) {
+            //--------------------------------------------------------
+            $empleados = XxhrEstructuraUteq::all();
+        
+            if ($empleados->isEmpty()) {
+                return response()->json([
+                    'status' => 404,
+                    'msj' => 'No se encontraron empleados',
+                ]);
+            }
+            
+            return response()->json([
+                'status' => 200,
+                'empleados' => $empleados,
+                'msj' => 'empleados encontrados',
+            ]);
             //--------------------------------------------------------
         } else {
             return response()->json([

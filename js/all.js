@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var correo = appData.email;
     Menu(appData.numEmp);
+    informacion_todos_empleados();
     obtenerAvatar(appData.numEmp, "#avatar", "30", "30", "rounded-circle");
     $.ajaxSetup({
         headers: {

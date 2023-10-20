@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="form-group py-4">
-                        <button type="submit" class="botonn btn btn-block me-3">subir imagen</button>
+                        <button type="submit" id="botonn" class="btn btn-block me-3">subir imagen</button>
                     </div>
                 </form>
                 <p class="card-text mt-4">
@@ -66,4 +66,9 @@
             </div>
         </div>
     </div>
+    <script>
+        //------------------ Avatar ------------------------------------
+        var insertAvatarRoute = '{{ route('insertAvatar') }}' + '?token=' + appData.token;
+        var delateAvatarRoute = '{{ route('delateAvatar') }}' + '?token=' + appData.token;
+    </script>
 @endsection {{-- Fin del contenido del body  --}}

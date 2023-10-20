@@ -12,7 +12,7 @@ class Menu  extends Model implements AuthenticatableContract
     use HasFactory, Authenticatable;
 
     protected $table = 'menu';
-    protected $fillable = ['NAME_MENU', 'ESTATUS', 'ICON'];
+    protected $fillable = ['NAME_MENU', 'ESTATUS', 'ICON_MENU'];
     protected $primaryKey = 'ID_MENU';
     public $timestamps = false;
 

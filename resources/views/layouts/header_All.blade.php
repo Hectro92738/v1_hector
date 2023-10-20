@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title')</title>
-
+    @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,8 +37,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/mensajes.js') }}"></script>
     @yield('Js')
-    @yield('css')
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -92,7 +93,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" id="salir" class="btn botonn">Cerrar Sesión</button>
+                            <button type="submit" id="salir" class="btn btn-primary">Cerrar Sesión</button>
                         </div>
                     </div>
                 </div>
@@ -114,17 +115,15 @@
         var indexRoute = '{{ url('/index') }}';
         var Route = '{{ url('/') }}'; //Cuando cierre sesión
         var logoutRoute = '{{ route('logout') }}'; //Cuando cierre sesión
-        var getNameRoute = '{{ route('getName') }}' + '?token=' + appData.token;
         //------------------ Avatar ------------------------------------
-        var insertAvatarRoute = '{{ route('insertAvatar') }}' + '?token=' + appData.token;
         var getAvatarRoute = '{{ route('getAvatar') }}' + '?token=' + appData.token;
-        var delateAvatarRoute = '{{ route('delateAvatar') }}' + '?token=' + appData.token;
-        //------------------ Menu ------------------------------------
-        var getMenuSubmenuRoute = '{{ route('getMenuSubmenu') }}' + '?token=' + appData.token;
-        var informacionPersonalRoute = '{{ route('informacionPersonal') }}' + '?token=' + appData.token;
+        var getNameRoute = '{{ route('getName') }}' + '?token=' + appData.token;
         //------------------ IMAGENES ------------------------------------
         var imgRoute = '{{ asset('storage/app/avatars/') }}';
         var imgeRoute = '{{ asset('storage/app/images/') }}';
+        //------------------ Menu ------------------------------------
+        var getMenuSubmenuRoute = '{{ route('getMenuSubmenu') }}' + '?token=' + appData.token; //Trae el Menú
+        var getAllEmpleadosRoute = '{{ route('getAllEmpleados') }}' + '?token=' + appData.token; //Traetodos los empleados
     </script>
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

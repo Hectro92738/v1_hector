@@ -12,7 +12,7 @@ class Submenu  extends Model implements AuthenticatableContract
     use HasFactory, Authenticatable;
 
     protected $table = 'submenu';
-    protected $fillable = ['NAME_SUBMENU', 'ESTATUS'];
+    protected $fillable = ['NAME_SUBMENU', 'ESTATUS', 'ICON_SUB'];
     protected $primaryKey = 'ID_SUBMENU';
     public $timestamps = false;
 
