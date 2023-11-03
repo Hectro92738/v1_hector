@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\XxhrEstructuraUteq;
+use App\Models\Mando;
+use Illuminate\Support\Str;
 
 
 class AuthController extends Controller
@@ -21,6 +23,7 @@ class AuthController extends Controller
             ->first();
 
         if ($user) {
+            $token = Str::random(40);
             if ($user->PASSWORD == '0') {
                 // El empleado debe cambiar su contraseña
                 if ($password == $user->EMP_NUM) {
@@ -28,6 +31,7 @@ class AuthController extends Controller
                     Auth::login($user); // Autentica al usuario
                     return response()->json([
                         'success' => true,
+                        'token' => $token,
                         'email' => $user->EMAIL,
                         'name' => 'Bienvenid(@) ' . $user->EMP_NAME,
                         'numEmp' => $user->EMP_NUM,
@@ -41,6 +45,7 @@ class AuthController extends Controller
                     Auth::login($user); // Autentica al usuario
                     return response()->json([
                         'success' => true,
+                        'token' => $token,
                         'email' => $user->EMAIL,
                         'name' => 'Bienvenid(@) ' . $user->EMP_NAME,
                         'numEmp' => $user->EMP_NUM,
@@ -113,7 +118,7 @@ class AuthController extends Controller
             $user->save();
             return response()->json([
                 'status' => 200,
-                'msj'    => 'Tu contraseña a sido generada con exito, ahora ya puedes Iniciar Seción con ella',
+                'msj'    => 'Tu contraseña ha sido generada con exíto, ahora ya puedes inisiar sesión con ella',
             ]);
             //--------------------------------------------------------
         } else {
@@ -207,14 +212,16 @@ class AuthController extends Controller
             ]);
         }
     }
-    public function informacion_personal(Request $request)
+    public function informacionpersonal(Request $request)
     {
         $token = $request->query('token');
         $storedToken = $_COOKIE['session_token'] ?? null;
         if ($storedToken && $token === $storedToken) {
             //--------------------------------------------------------
             $numEmp = $request->input('numEmp');
-
+            /*SUBSTRING JOB NAME*/
+            $obj = XxhrEstructuraUteq::where('EMP_NUM', $numEmp)->value('JOB_NAME');
+            $jobName=substr($obj,strpos($obj,'.')+1);
             // Buscar el usuario por EMP_NUM
             $user = XxhrEstructuraUteq::where('EMP_NUM', $numEmp)->first();
 
@@ -225,6 +232,42 @@ class AuthController extends Controller
                 $EMP_CURP = $user->EMP_CURP;
                 $EMP_IMSS = $user->EMP_IMSS;
                 $EMP_BIRTHDATE = $user->EMP_BIRTHDATE;
+                $ESTATUS= $user->ESTATUS;
+                $POS_TIPO_DESC = $user->POS_TIPO_DESC;
+                $NOM_NAME_1 = $user->NOM_NAME_1;
+                $DIRE = $user->DIRE;
+                $DEPT = $user->DEPT;
+                $ORGANIZACION = $user->ORGANIZACION;
+                $POS_STATUS= $user->POS_STATUS;
+                $JOB_NAME = $user->JOB_NAME;
+                $NOM_ID_1 = $user->NOM_ID_1;
+                $POS_REF = $user->POS_REF;
+                $CATE_FED_ORIGINAL = $user->CATE_FED_ORIGINAL;
+                $CAT_FED = $user->CAT_FED;
+                $SDO_FED= $user->SDO_FED;
+                $GPO_FED = $user->GPO_FED;
+                $HRS_FED = $user->HRS_FED;
+                $EMP_RFC = $user->EMP_RFC;
+                $EMP_SEX = $user->EMP_SEX;
+                $EMP_AGE = $user->EMP_AGE;
+                $EMP_PRI_CON= $user->EMP_PRI_CON;
+                $EMP_ACT_CON= $user->EMP_ACT_CON;
+                $ASG_INI = $user->ASG_INI;
+                $ASG_FIN = $user->ASG_FIN;
+                $ASG_NUM = $user->ASG_NUM;
+                $ASG_SIN = $user->ASG_SIN;
+                $SINDICALIZADO_N_S = $user->SINDICALIZADO_N_S;
+                $TIPO_CONTRATO= $user->TIPO_CONTRATO;
+                $ASG_SDO = $user->ASG_SDO;
+                $ASG_SDO_FEC = $user->ASG_SDO_FEC;
+                $ASG_HOR = $user->ASG_HOR;
+                $BASE_NAME_1 = $user->BASE_NAME_1;
+                $ASG_REF = $user->ASG_REF;
+                $QUINQUENIO = $user->QUINQUENIO;
+                $MARITAL_ESTATUS = $user->MARITAL_ESTATUS;
+                $ESTATUS = $user->ESTATUS;
+
+                
 
                 return response()->json([
                     'status' => 200,
@@ -234,6 +277,43 @@ class AuthController extends Controller
                     'EMP_CURP' => $EMP_CURP,
                     'EMP_IMSS' => $EMP_IMSS,
                     'EMP_BIRTHDATE' => $EMP_BIRTHDATE,
+                    'EMP_BIRTHDATE' => $user->EMP_BIRTHDATE,
+                    'ESTATUS'=> $user->ESTATUS,
+                    'POS_TIPO_DESC' => $user->POS_TIPO_DESC,
+                    'NOM_NAME_1' => $user->NOM_NAME_1,
+                    'DIRE' => $user->DIRE,
+                    'DEPT' => $user->DEPT,
+                    'ORGANIZACION' => $user->ORGANIZACION,
+                    'POS_STATUS'=> $user->POS_STATUS,
+                    'JOB_NAME'=> $user->JOB_NAME,
+                    'NOM_ID_1' => $user->NOM_ID_1,
+                    'POS_REF' => $user->POS_REF,
+                    'CATE_FED_ORIGINAL' => $user->CATE_FED_ORIGINAL,
+                    'CAT_FED' => $user->CAT_FED,
+                    'SDO_FED'=> $user->SDO_FED,
+                    'GPO_FED' => $user->GPO_FED,
+                    'HRS_FED' => $user->HRS_FED,
+                    'EMP_RFC' => $user->EMP_RFC,
+                    'EMP_SEX'=> $user->EMP_SEX,
+                    'EMP_AGE' => $user->EMP_AGE,
+                    'EMP_PRI_CON'=> $user->EMP_PRI_CON,
+                    'ASG_INI' => $user->ASG_INI,
+                    'ASG_FIN' => $user->ASG_FIN,
+                    'ASG_NUM' => $user->ASG_NUM,
+                    'ASG_SIN' => $user->ASG_SIN,
+                    'SINDICALIZADO_N_S' => $user->SINDICALIZADO_N_S,
+                    'TIPO_CONTRATO'=> $user->TIPO_CONTRATO,
+                    'ASG_SDO' => $user->ASG_SDO,
+                    'ASG_SDO_FEC' => $user->ASG_SDO_FEC,
+                    'ASG_HOR' => $user->ASG_HOR,
+                    'BASE_NAME_1' => $user->BASE_NAME_1,
+                    'ASG_REF' => $user->ASG_REF,
+                    'QUINQUENIO' => $user->QUINQUENIO,
+                    'MARITAL_ESTATUS' => $user->MARITAL_ESTATUS,
+                    'ESTATUS' => $user->ESTATUS,
+                    'JOBNAME'=>$jobName,
+                    'EMP_ACT_CON'=>$EMP_ACT_CON,
+
                 ]);
             } else {
                 return response()->json([
@@ -255,21 +335,137 @@ class AuthController extends Controller
         $storedToken = $_COOKIE['session_token'] ?? null;
         if ($storedToken && $token === $storedToken) {
             //--------------------------------------------------------
-            $empleados = XxhrEstructuraUteq::all();
-        
+            $jobNamePrefixes = ["A05", "B05", "C05", "C10", "D05", "E05", "E10", "C15"];
+
+            $empleadosFiltrados = XxhrEstructuraUteq::where(
+                function ($query) use ($jobNamePrefixes) {
+                    foreach ($jobNamePrefixes as $prefix) {
+                        $query->orWhere(
+                            function ($query) use ($prefix) {
+                                $query->where('JOB_NAME', 'like', $prefix . '.%');
+                            }
+                        );
+                    }
+                }
+            )->get([
+                'EMP_NUM',
+                'EMP_NAME',
+                XxhrEstructuraUteq::raw("SUBSTRING_INDEX(JOB_NAME, '.', 1) as JobNamePrefix")
+            ]);
+
+            $empleados = XxhrEstructuraUteq::all([
+                'EMP_NUM',
+                'EMP_NAME',
+                'EMP_RFC',
+                'ORGANIZACION',
+                'JOB_NAME',
+                'EMP_IMSS',
+                'EMP_BIRTHDATE',
+                'TIPO_CONTRATO',
+                'ESTATUS',
+                'DIRE',
+                'DEPT',
+                XxhrEstructuraUteq::raw("SUBSTRING_INDEX(JOB_NAME, '.', 1) as JobNamePrefix")
+            ]);
+
             if ($empleados->isEmpty()) {
                 return response()->json([
                     'status' => 404,
                     'msj' => 'No se encontraron empleados',
                 ]);
             }
-            
+
             return response()->json([
                 'status' => 200,
                 'empleados' => $empleados,
+                'x' => $empleadosFiltrados,
                 'msj' => 'empleados encontrados',
             ]);
             //--------------------------------------------------------
+        } else {
+            return response()->json([
+                'status' => 700,
+                'msj' => 'Sesión inválida',
+            ]);
+        }
+    }
+    public function get_Total_Empleados(Request $request)
+    {
+        $token = $request->query('token');
+        $storedToken = $_COOKIE['session_token'] ?? null;
+        if ($storedToken && $token === $storedToken) {
+            //--------------------------------------------------------
+            $totalEmpleados = XxhrEstructuraUteq::where('ESTATUS', 'A')->count();
+
+            return response()->json([
+                'status' => 200,
+                'totalEmpleados' => $totalEmpleados,
+                'msj' => 'Total de empleados obtenido correctamente.',
+            ]);
+            //--------------------------------------------------------
+        } else {
+            return response()->json([
+                'status' => 700,
+                'msj' => 'Sesión inválida',
+            ]);
+        }
+    }
+    public function conocer_tipousuarios(Request $request)
+    {
+        $token = $request->query('token');
+        $storedToken = $_COOKIE['session_token'] ?? null;
+        if ($storedToken && $token === $storedToken) {
+            //--------------------------------------------------------
+            $numEmp = $request->input('numEmp');
+            if ($numEmp == "") {
+                return response()->json([
+                    'status' => 400,
+                    'msj' => 'Selecciona un Empleado'
+                ]);
+            }
+            // Crear un array $tipo_menus
+            $tipo_menus = [9];
+
+            // Obtiene el JOB_NAME
+            $jobName = XxhrEstructuraUteq::where('EMP_NUM', $numEmp)->value('JOB_NAME');
+            $jobNumber = substr($jobName, 0, strpos($jobName, '.'));
+            $mandoExists = Mando::where('NUM_MANDO', $jobNumber)->exists();
+
+            if ($mandoExists) {
+                $tipo_menus[] = 60;
+            }
+            // Obtiene los campos NOM_NAME_1, TIPO_CONTRATO y SINDICALIZADO_N_S
+            $ubicacion = XxhrEstructuraUteq::where('EMP_NUM', $numEmp)
+                ->select('DIRE', 'DEPT', 'ORGANIZACION')
+                ->first();
+
+            // Obtiene los campos NOM_NAME_1, TIPO_CONTRATO y SINDICALIZADO_N_S
+            $employeeInfo = XxhrEstructuraUteq::where('EMP_NUM', $numEmp)
+                ->select('NOM_NAME_1', 'TIPO_CONTRATO', 'SINDICALIZADO_N_S')
+                ->first();
+
+            if (
+                $employeeInfo->NOM_NAME_1 == "UTEQ" &&
+                $employeeInfo->SINDICALIZADO_N_S == "SI" &&
+                $employeeInfo->TIPO_CONTRATO == "BASE"
+            ) {
+                $tipo_menus[] = 59;
+            }
+
+            if (
+                $employeeInfo->NOM_NAME_1 == "UTEQ" &&
+                $employeeInfo->SINDICALIZADO_N_S == "NO"
+            ) {
+                $tipo_menus[] = 36;
+            }
+
+            // Devuelve los datos en formato JSON
+            return response()->json([
+                'status' => 200,
+                'jobName' => $jobNumber,
+                'ubicacion' => $ubicacion,
+                'tipo_usuario' => $tipo_menus,
+            ]);
         } else {
             return response()->json([
                 'status' => 700,

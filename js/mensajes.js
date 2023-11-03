@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $("#loading-container").hide();
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -21,7 +22,8 @@ function borra_mensajes() {
     $(".invalid-feedback").remove();
 }
 function error_ajax() {
-    alerta("danger", "System Error");
+    //alerta("danger", "☠️");
+    //setInterval(actualizar, 1000);
 }
 function alerta(tipo, mensaje) {
     switch (tipo) {
@@ -55,7 +57,10 @@ function alerta(tipo, mensaje) {
     }, 2000);
 }
 function actualizar() {
-    location.reload(true);
+    $("#loading-container").show();
+    setTimeout(function () {
+        location.reload(true);
+    }, 2000);
 }
 function fecha_fancy(sFecha) {
     const ames = [
@@ -142,27 +147,29 @@ function VisibilityPassword(checkboxId, passwordIds) {
     });
 }
 function obtenerNombreEmpleado(correo) {
-    $.ajax({
-        url: getNameRoute,
-        dataType: "json",
-        method: "POST",
-        data: {
-            correo: correo,
-        },
-        success: function (response) {
-            if (response.status == 700) {
-                alerta("danger", "Sesión Finalizada");
-                setTimeout(function () {
-                    cerrarSesion();
-                }, 1000);
-            }
-            var nombreUsuario = response.nombre;
-            var bienvenidaElement = document.querySelector("#nombre");
-            bienvenidaElement.innerHTML = nombreUsuario;
-        },
-        error: function () {
-            error_ajax();
-        },
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: getNameRoute,
+            dataType: "json",
+            method: "POST",
+            data: {
+                correo: correo,
+            },
+            success: function (response) {
+                if (response.status == 700) {
+                    setTimeout(function () {
+                        cerrarSesion();
+                    }, 1000);
+                }
+                if (response.status == 200) {
+                    resolve(response);
+                }
+            },
+            error: function () {
+                error_ajax();
+                reject("Error en la solicitud AJAX");
+            },
+        });
     });
 }
 function obtenerAvatar(numEmp, id, width, height, css) {
@@ -226,10 +233,11 @@ function Menu(numEmp) {
         },
         success: function (response) {
             if (response.status == 700) {
+                alerta("danger", "Sesión Finalizada");
                 cerrarSesion();
             }
             if (response.status == 200) {
-                console.log(response);
+                //console.log(response);
                 // Limpia el contenedor antes de agregar nuevos elementos
                 $("#menu-container").empty();
                 // Objeto para almacenar menús y sus submenús
@@ -270,12 +278,21 @@ function Menu(numEmp) {
                         $.each(
                             menuSubmenus.submenus,
                             function (index, submenu) {
-                                //http://172.31.192.78/laravel_v1/
                                 // Convierte el texto a minúsculas y reemplaza espacios con guiones bajos
-                                var formattedName = submenu.NAME_SUBMENU.toLowerCase().replace(/ /g,"_");
+                                var formattedName =
+                                    submenu.NAME_SUBMENU.toLowerCase().replace(
+                                        / /g,
+                                        "_"
+                                    );
                                 // Elimina acentos y diacríticos
-                                formattedName = formattedName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                                var submenuURL ="http://localhost/laravel_v1/" +formattedName +"/" + appData.token;
+                                formattedName = formattedName
+                                    .normalize("NFD")
+                                    .replace(/[\u0300-\u036f]/g, "");
+                                var submenuURL =
+                                    "http://localhost/laravel_v1/" +
+                                    formattedName +
+                                    "/" +
+                                    appData.token;
 
                                 menuHtml += '<li class="nav-item ms-3">';
                                 menuHtml +=
@@ -305,6 +322,9 @@ function Menu(numEmp) {
                     $("#menu-container").append(menuHtml);
                 });
             }
+            if (response.status == 600) {
+                console.log(response);
+            }
             if (response.status == 404) {
                 alerta("danger", response.msj);
             }
@@ -331,33 +351,136 @@ function informacion_personal(numEmp) {
                     reject("Sesión cerrada");
                 }
                 if (response.status == 200) {
+                    console.log(response);
                     resolve(response);
                 }
             },
             error: function () {
+                error_ajax();
                 reject("Error en la solicitud AJAX");
             },
         });
     });
 }
-function informacion_todos_empleados(){
-    $.ajax({
-        url: getAllEmpleadosRoute,
-        dataType: "json",
-        method: "POST",
-        success: function (response) {
-            if (response.status == 700) {
-                setTimeout(function () {
-                    cerrarSesion();
-                }, 1000);
-            }
-            if (response.status == 200) {
-                //alerta("success", response.msj)
-                console.log(resp)
-            }
-        },
-        error: function () {
-            error_ajax();
-        },
+function get_mandos() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: getMandosRoute,
+            dataType: "json",
+            method: "POST",
+            success: function (response) {
+                if (response.status == 700) {
+                    setTimeout(function () {
+                        cerrarSesion();
+                    }, 1000);
+                    reject("Sesión cerrada");
+                }
+                if (response.status == 200) {
+                    //console.log(response);
+                    resolve(response);
+                }
+            },
+            error: function () {
+                error_ajax();
+            },
+        });
+    });
+}
+function obtenerTotalEmpleado() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: getTotalEmpleadosRoute,
+            dataType: "json",
+            method: "POST",
+            success: function (response) {
+                if (response.status == 700) {
+                    setTimeout(function () {
+                        cerrarSesion();
+                    }, 1000);
+                }
+                if (response.status == 200) {
+                    resolve(response);
+                }
+            },
+            error: function () {
+                error_ajax();
+                reject("Error en la solicitud AJAX");
+            },
+        });
+    });
+}
+function get_imagenes() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: getImgRoute,
+            dataType: "json",
+            method: "POST",
+            success: function (response) {
+                if (response.status == 700) {
+                    setTimeout(function () {
+                        cerrarSesion();
+                    }, 1000);
+                }
+                if (response.status == 200) {
+                    resolve(response);
+                }
+            },
+            error: function () {
+                error_ajax();
+                reject("Error en la solicitud AJAX");
+            },
+        });
+    });
+}
+function conocer_tipo_usuarios(numEmp) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: conocertipousuariosRoute,
+            dataType: "json",
+            method: "POST",
+            data: {
+                numEmp: numEmp,
+            },
+            success: function (response) {
+                if (response.status == 700) {
+                    setTimeout(function () {
+                        cerrarSesion();
+                    }, 1000);
+                    reject("Sesión cerrada");
+                }
+                if (response.status == 200) {
+                    resolve(response);
+                }
+            },
+            error: function () {
+                error_ajax();
+                reject("Error en la solicitud AJAX");
+            },
+        });
+    });
+}
+//choseen
+function cargarEmpleados() {
+    var cargando ='<h4 class="text-center text-secondary">Cargando...</h4>';
+    $("#Cargando").append(cargando);
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: getAllEmpleadosRoute,
+            dataType: "json",
+            method: "POST",
+            success: function (response) {
+                if (response.status == 700) {
+                    setTimeout(cerrarSesion, 1000);
+                    reject("Sesión cerrada");
+                }
+                if (response.status == 200) {
+                    $("#Cargando").hide();
+                    resolve(response);
+                }
+            },
+            error: function () {
+                error_ajax();
+            },
+        });
     });
 }

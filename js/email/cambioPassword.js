@@ -59,7 +59,9 @@ $(document).ready(function () {
         }
     });
     //------------------------------------------------------------------------------
-    var formatoContrasena = /^(?=.*[A-Z])(?=.*[a-z])(?!.*[^a-zA-Z0-9]).{8,}$/;
+    //var formatoContrasena = /^(?=.*[A-Z])(?=.*[a-z])(?!.*[^a-zA-Z0-9]).{8,}$/;
+    var formatoContrasena = /^(?=.*[A-Z])(?=.*[a-z]).{8,}$/;
+
     $(document).on("submit", "#form_cambio_Password", function (e) {
         e.preventDefault();
         borra_mensajes();
@@ -96,7 +98,7 @@ $(document).ready(function () {
                     var mensaje = document.querySelector('#mensajee');
                     mensaje.innerHTML = msj;
                     setTimeout(function () {
-                        window.location.href = `http://127.0.0.1:8000/`;
+                        window.location.href = `http://localhost/laravel_v1/`;
                         //setInterval(actualizar, 1000);
                     }, 8000);
                 } else {

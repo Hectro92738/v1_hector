@@ -19,7 +19,6 @@ class URLController extends Controller
    {
       return view('email.cambioPassword');
    }
-
    public function home($token)
    {
       $storedToken = $_COOKIE['session_token'] ?? null;
@@ -44,7 +43,6 @@ class URLController extends Controller
          return redirect('/')->with('error', 'Sesión invalida');
       }
    }
-
    public function index($token)
    {
       $storedToken = $_COOKIE['session_token'] ?? null;
@@ -68,7 +66,7 @@ class URLController extends Controller
       }
    }
    //..--- MENU ---..
-   public function documentos_personales($token)
+   public function informacion_personal($token)
    {
       $storedToken = $_COOKIE['session_token'] ?? null;
       if ($token === $storedToken) {
@@ -92,17 +90,40 @@ class URLController extends Controller
          return redirect('/')->with('error', 'Sesión invalida');
       }
    }
-   public function panel_de_rh($token)
+   public function configuracion_de_roles($token)
    {
       $storedToken = $_COOKIE['session_token'] ?? null;
       if ($token === $storedToken) {
          //--------------------------------------------------------
-         return view('All.panel_de_rh');
+         return view('All.configuracion_de_roles');
          //--------------------------------------------------------
       } else {
          // El token no es válido, redirige al usuario a la página de inicio de sesión
          return redirect('/')->with('error', 'Sesión invalida');
       }
    }
-
+   public function panel_de_aprobacion($token)
+   {
+      $storedToken = $_COOKIE['session_token'] ?? null;
+      if ($token === $storedToken) {
+         //--------------------------------------------------------
+         return view('All.panel_de_aprobacion');
+         //--------------------------------------------------------
+      } else {
+         // El token no es válido, redirige al usuario a la página de inicio de sesión
+         return redirect('/')->with('error', 'Sesión invalida');
+      }
+   }
+   public function mas_configuraciones_web($token)
+   {
+      $storedToken = $_COOKIE['session_token'] ?? null;
+      if ($token === $storedToken) {
+         //--------------------------------------------------------
+         return view('All.mas_configuraciones_web');
+         //--------------------------------------------------------
+      } else {
+         // El token no es válido, redirige al usuario a la página de inicio de sesión
+         return redirect('/')->with('error', 'Sesión invalida');
+      }
+   }
 }

@@ -21,7 +21,7 @@ class AvatarController extends Controller
 
          // Busca si ya existe un registro con el EMP_NUM
          $existingAvatar = Avatar::where('EMP_NUM', $empNum)->first();
-         $path="/var/www/html/laravel_v1/storage/";
+         //$path="/var/www/html/laravel_v1/storage/";
          if ($existingAvatar) {
             // Si el registro existe, actualiza la columna IMG con la nueva imagen
             $fileName = time() . '.' . $file->getClientOriginalExtension();
@@ -83,7 +83,6 @@ class AvatarController extends Controller
          ]);
       }
    }
-
    public function delete_avatar(Request $request)
    {
        $token = $request->query('token');
@@ -117,8 +116,4 @@ class AvatarController extends Controller
            ]);
        }
    }
-
-   
-
-
 }

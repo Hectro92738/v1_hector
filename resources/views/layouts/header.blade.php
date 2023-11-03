@@ -13,22 +13,24 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:ital,wght@1,300&family=Poppins:wght@300&family=Roboto:ital,wght@1,300&family=Ysabeau+SC:wght@1;100&display=swap"
-        rel="stylesheet">
     {{-- bootstrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('css/librerias/bootstrap-icons/font/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/librerias/bootstrap-css/css/bootstrap.css') }}">
     {{-- JAVASCRIPT --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Enlace a Bootstrap JavaScript -->
     <script src="{{ asset('js/mensajes.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/librerias/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/librerias/bootstrap.bundle.min.js') }}"></script>
     @yield('Js')
     {{-- ---------- --}}
 </head>
 
 <body>
+    {{-- ANIMACIÓN DE CARGANDO --}}
+    <div id="loading-container" class="loading-container">
+        <div class="loading-spinner"></div>
+    </div>
     <script>
         var appData = {
             email: '{{ request('email') }}',
@@ -49,7 +51,9 @@
         var eupdatePasswordSecionRoute = '{{ route('eupdatePasswordSecion') }}' + '?token=' + appData.token;
         var getNameRoute = '{{ route('getName') }}' + '?token=' + appData.token;
         var verificaEmailExisteRoute = '{{ route('verificaEmailExiste') }}';
+        var getAllEmpleadosRoute = '{{ route('getAllEmpleados') }}';
     </script>
-    {{-- @include('footer')  --}}   {{-- Incluye el archivo de navegación --}}
+    {{-- @include('footer')  --}} {{-- Incluye el archivo de navegación --}}
 </body>
+
 </html>

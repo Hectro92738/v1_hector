@@ -134,7 +134,7 @@ class SubmenuController extends Controller
 
                 return response()->json([
                     'status' => 200,
-                    'msj' => 'Menú insertado correctamente.',
+                    'msj' => 'Sub-Menú insertado correctamente.',
                 ]);
             }
             //--------------------------------------------------------

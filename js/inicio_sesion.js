@@ -38,8 +38,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 if (response.success == true) {
-                    // Genera un token aleatorio (puedes utilizar una librería de generación de tokens más segura)
-                    const token = Math.random().toString(36).substring(2);
+                    const token = response.token; 
                     const email = response.email;
                     const numEmp = response.numEmp;
                     const changePassword = response.changePassword;

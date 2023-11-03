@@ -40,6 +40,8 @@ $(document).ready(function () {
 });
 function envioURL() {
     $.ajax({
+        //http://172.31.192.78/Recuperacion_password/envioGmail.php
+        //http://localhost/envio/envioGmail.php
         url: 'http://localhost/envio/envioGmail.php',
         method: 'POST',
         dataType: 'json',

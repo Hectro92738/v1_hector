@@ -80,13 +80,13 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ asset('images/img-logo1.jpeg') }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/img-logo1.jpeg') }}" class="d-block w-100" alt="" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ asset('images/img-logo2.jpeg') }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/img-logo2.jpeg') }}" class="d-block w-100" alt="" loading="lazy">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ asset('images/img-logo3.jpg') }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/img-logo3.jpg') }}" class="d-block w-100" alt="" loading="lazy">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"

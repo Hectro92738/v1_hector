@@ -88,25 +88,57 @@ CREATE TABLE xxhr_estructura_historial_uteq (
     PASSWORD varchar(255) DEFAULT NULL,
     ESTATUS varchar(5) DEFAULT NULL
 );
-CREATE TABLE menu (
+CREATE TABLE xxhr_menu (
     ID_MENU INT(15) AUTO_INCREMENT PRIMARY KEY,
     NAME_MENU VARCHAR(100) NOT NULL,
     ESTATUS varchar(5) DEFAULT NULL
 );
-CREATE TABLE submenu (
+CREATE TABLE xxhr_submenu (
     ID_SUBMENU INT(15) AUTO_INCREMENT PRIMARY KEY,
     NAME_SUBMENU VARCHAR(100) NOT NULL,
     ESTATUS varchar(5) DEFAULT NULL
 );
-CREATE TABLE menu_submenu (
+CREATE TABLE xxhr_menu_submenu (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     EMP_NUM varchar(25) NOT NULL,
     MENU_ID INT(15) NOT NULL,
     SUBMENU_ID INT(15) NOT NULL,
-    FOREIGN KEY (EMP_NUM) REFERENCES xxhr_estructura_uteq(EMP_NUM),
     FOREIGN KEY (MENU_ID) REFERENCES menu(ID_MENU),
     FOREIGN KEY (SUBMENU_ID) REFERENCES submenu(ID_SUBMENU)
 );
+CREATE TABLE xxhr_mando(
+    ID_MANDO int(10) AUTO_INCREMENT PRIMARY KEY,
+    NUM_MANDO VARCHAR(5) DEFAULT NULL,
+    ESTATUS_MANDO VARCHAR(2) DEFAULT NULL
+);
+CREATE TABLE xxhr_imagenes(
+    ID_IMAGEN int(5) AUTO_INCREMENT PRIMARY KEY,
+    IMG VARCHAR(20) DEFAULT NULL,
+    ACTION VARCHAR(2) DEFAULT NULL
+);
+------------------------------------------------------
+create table xxhr_direcciones(
+    ID_DIRECCION int(5) AUTO_INCREMENT PRIMARY KEY,
+    CODIGO VARCHAR(20) DEFAULT NULL,
+    DESCRIPCION VARCHAR(100)
+);
+create table xxhr_departamentos(
+    ID_DEPARTAMENTO int(5) AUTO_INCREMENT PRIMARY KEY,
+    CODIGO VARCHAR(20) DEFAULT NULL,
+    DESCRIPCION VARCHAR(100) DEFAULT NULL
+);
+
+CREATE table xxhr_aprobacion(
+    ID_APROBACION int(5) AUTO_INCREMENT PRIMARY KEY,
+    EMP_NUM_MANDO varchar(25) DEFAULT NULL,
+    EMP_NUM varchar(25) DEFAULT NULL,
+    ESTATUS varchar(5) DEFAULT NULL
+);
+
+
+
+
+
 ---------------------------------------------------------
 ALTER TABLE xxhr_estructura_historial_uteq
 ADD CONSTRAINT fk_historial FOREIGN KEY (EMP_NUM) REFERENCES xxhr_estructura_uteq (EMP_NUM);
@@ -116,8 +148,13 @@ ADD KEY ID_HISTORIAL (ID_HISTORIAL);
 
 ALTER TABLE xxhr_estructura_historial_uteq
 ADD CONSTRAINT historial_ibfk_1 FOREIGN KEY (EMP_NUM) REFERENCES xxhr_estructura_uteq (EMP_NUM);
-COMMIT;
+
+
+ALTER TABLE xxhr_estructura_historial_uteq
+MODIFY ID_HISTORIAL int(10) AUTO_INCREMENT PRIMARY KEY;
 
 ALTER TABLE xxhr_estructura_uteq
-MODIFY QUINQUENIO VARCHAR(5);
+MODIFY ESTATUS varchar(5) DEFAULT NULL;
 
+
+RENAME TABLE mando TO xxhr_mando;

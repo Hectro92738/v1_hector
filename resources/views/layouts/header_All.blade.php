@@ -3,22 +3,17 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>@yield('title')</title>
-    @yield('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{{ asset('chosen/chosen.css') }}">
+    @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/librerias/bootstrap-icons/font/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/librerias/bootstrap-css/css/bootstrap.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
@@ -32,15 +27,24 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="icon" href="{{ asset('dist/img/favicon.ico') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/librerias/jquery-3.6.3.min.js') }}"></script>
+    <!-- jQuery -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('chosen/chosen.jquery.js') }}" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/css/jquery.dataTables.min.css') }}">
+    <script type="text/javascript" charset="utf8" src="{{ asset('DataTables/js/jquery.dataTables.min.js') }}"></script>
+    
+    <script src="{{ asset('js/librerias/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/librerias/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/mensajes.js') }}"></script>
     @yield('Js')
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    {{-- ANIMACIÓN DE CARGANDO --}}
+    <div id="loading-container" class="loading-container">
+        <div class="loading-spinner"></div>
+    </div>
     <script>
         var appData = {
             email: '{{ request('email') }}',
@@ -119,18 +123,22 @@
         var getAvatarRoute = '{{ route('getAvatar') }}' + '?token=' + appData.token;
         var getNameRoute = '{{ route('getName') }}' + '?token=' + appData.token;
         //------------------ IMAGENES ------------------------------------
-        var imgRoute = '{{ asset('storage/app/avatars/') }}';
-        var imgeRoute = '{{ asset('storage/app/images/') }}';
+        var imgRoute = '{{ asset('storage/app/avatars/') }}'; //Ruta para obtener las imagenes del "STORAGE"
+        var imagesRoute = '{{ asset('storage/app/images/') }}'; //Ruta para obtener las imagenes del "STORAGE"
         //------------------ Menu ------------------------------------
         var getMenuSubmenuRoute = '{{ route('getMenuSubmenu') }}' + '?token=' + appData.token; //Trae el Menú
         var getAllEmpleadosRoute = '{{ route('getAllEmpleados') }}' + '?token=' + appData.token; //Traetodos los empleados
+        //------------------ Mandos ------------------------------------
+        var getMandosRoute = '{{ route('getMandos') }}' + '?token=' + appData.token; //Traetodos los Mandos de la tabla "mandos"
+        var getTotalEmpleadosRoute = '{{ route('getTotalEmpleados') }}' + '?token=' + appData.token; //Traetodos Total de Empleados de la estructura
+        var getImgRoute = '{{ route('getImg') }}' + '?token=' + appData.token; 
+        var conocertipousuariosRoute = '{{ route('conocertipousuarios') }}' + '?token=' + appData.token; 
     </script>
-    <!-- jQuery -->
-    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('chosen/docsupport/prism.js') }}"></script>
+    <script src="{{ asset('chosen/docsupport/init.js') }}"></script> --}}
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
